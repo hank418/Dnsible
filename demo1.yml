@@ -1,0 +1,5 @@
+---
+- hosts: demo1
+  name: executing init_basic role
+  roles:
+    - { role: init_basic, become: yes }
