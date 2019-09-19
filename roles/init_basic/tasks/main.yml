@@ -1,0 +1,24 @@
+---
+- name: install basic package
+  apt:
+    name: "{{ packages }}"
+    install_recommends: no
+
+- name: set locale
+  locale_gen:
+    name: en_US.UTF-8
+    state: present
+
+- name: set timezone
+  timezone:
+    hwclock: local
+    name: Asia/Taipei
+  notify: restart rsyslog
+
+- name: cp ntp config to server
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/{{ item }}"
+  with_items:
+    - ntp.conf
+  notify: restart ntp

@@ -1,0 +1,2 @@
+[demo_group]
+demo1 ansible_ssh_host=256.256.256.256
